@@ -64,3 +64,18 @@ else if (edad <16){
  }   
 
  //EASY MODE 4.
+ let numero1 = Number(prompt("Dime el primer número"));
+ let numero2 = Number(prompt("Dime el segundo número"));
+
+if (numero1>numero2){
+    console.log(numero1 + "es mayor que "+ numero2)
+    document.body.innerHTML += "<h1>"+numero1 +">"+numero2+"</h1>";
+}
+else if (numero1<numero2){
+    console.log(numero1 + "es menor que "+ numero2)
+    document.body.innerHTML += "<h1>"+numero1 +"<"+numero2+"</h1>";
+}
+else if(numero1=numero2){
+    console.log(numero1 + "es igual que "+ numero2)
+    document.body.innerHTML += "<h1>"+numero1 +"="+numero2+"</h1>";
+}
