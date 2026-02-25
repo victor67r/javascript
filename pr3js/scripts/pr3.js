@@ -128,3 +128,142 @@ for (let i = numeros4; i >= 1; i--) {
   
   console.log(fila);
 }
+
+//HARDCORE MODE: BLACKJACK
+//CHATGEPETEADA HISTORICA, PERO PARA VER COMO FUNCIONA.
+let baraja = [];
+let jugador = [];
+let dealer = [];
+let saldo = 100;
+let juegoActivo = false;
+
+const valores = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
+const palos = ["♠","♥","♦","♣"];
+
+const btnRepartir = document.getElementById("btnRepartir");
+const btnHit = document.getElementById("btnHit");
+const btnStand = document.getElementById("btnStand");
+
+btnRepartir.addEventListener("click", iniciarJuego);
+btnHit.addEventListener("click", pedirCarta);
+btnStand.addEventListener("click", plantarse);
+
+function crearBaraja(){
+    baraja = [];
+    for(let palo of palos){
+        for(let valor of valores){
+            baraja.push(valor + palo);
+        }
+    }
+}
+
+function mezclar(){
+    baraja.sort(()=> Math.random() - 0.5);
+}
+
+function valorCarta(carta){
+    let valor = carta.slice(0,-1);
+    if(valor === "A") return 11;
+    if(["K","Q","J","10"].includes(valor)) return 10;
+    return parseInt(valor);
+}
+
+function calcularPuntos(mano){
+    let puntos = 0;
+    let ases = 0;
+
+    for(let carta of mano){
+        puntos += valorCarta(carta);
+        if(carta.startsWith("A")) ases++;
+    }
+
+    while(puntos > 21 && ases > 0){
+        puntos -= 10;
+        ases--;
+    }
+
+    return puntos;
+}
+
+function actualizarUI(){
+    document.getElementById("cartasJugador").innerText = jugador.join(" ");
+    document.getElementById("cartasDealer").innerText = dealer.join(" ");
+    document.getElementById("puntosJugador").innerText = calcularPuntos(jugador);
+    document.getElementById("puntosDealer").innerText = calcularPuntos(dealer);
+    document.getElementById("saldo").innerText = saldo;
+}
+
+function iniciarJuego(){
+    let apuesta = parseInt(document.getElementById("apuesta").value);
+
+    if(!apuesta || apuesta <= 0 || apuesta > saldo){
+        alert("Apuesta inválida");
+        return;
+    }
+
+    juegoActivo = true;
+    document.getElementById("mensaje").innerText = "";
+
+    crearBaraja();
+    mezclar();
+
+    jugador = [baraja.pop(), baraja.pop()];
+    dealer = [baraja.pop(), baraja.pop()];
+
+    actualizarUI();
+}
+
+function pedirCarta(){
+    if(!juegoActivo) return;
+
+    jugador.push(baraja.pop());
+    actualizarUI();
+
+    if(calcularPuntos(jugador) > 21){
+        terminarJuego();
+    }
+}
+
+function plantarse(){
+    if(!juegoActivo) return;
+
+    while(calcularPuntos(dealer) < 17){
+        dealer.push(baraja.pop());
+    }
+
+    terminarJuego();
+}
+
+function terminarJuego(){
+    juegoActivo = false;
+
+    let puntosJugador = calcularPuntos(jugador);
+    let puntosDealer = calcularPuntos(dealer);
+    let apuesta = parseInt(document.getElementById("apuesta").value);
+
+    if(puntosJugador > 21){
+        saldo -= apuesta;
+        mostrarMensaje("💥 Te pasaste. Pierdes.");
+    }
+    else if(puntosDealer > 21){
+        saldo += apuesta;
+        mostrarMensaje("🎉 Dealer se pasó. Ganas!");
+    }
+    else if(puntosJugador > puntosDealer){
+        saldo += apuesta;
+        mostrarMensaje("🏆 Ganas!");
+    }
+    else if(puntosJugador < puntosDealer){
+        saldo -= apuesta;
+        mostrarMensaje("😢 Pierdes.");
+    }
+    else{
+        mostrarMensaje("🤝 Empate.");
+    }
+
+    actualizarUI();
+}
+
+function mostrarMensaje(texto){
+    document.getElementById("mensaje").innerText = texto;
+}

@@ -5,8 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practica 3 JS</title>
     <script src="scripts/pr3.js" defer></script>
+    <link rel="stylesheet" href="styles/pr3.css">
 </head>
 <body>
-    
+    <h1>🃏 BLACKJACK</h1>
+
+<h2>Saldo: $<span id="saldo">100</span></h2>
+<input type="number" id="apuesta" placeholder="Apuesta" min="1">
+
+<div class="cartas">
+    <h3>Jugador</h3>
+    <div id="cartasJugador"></div>
+    <div>Puntos: <span id="puntosJugador">0</span></div>
+</div>
+
+<div class="cartas">
+    <h3>Dealer</h3>
+    <div id="cartasDealer"></div>
+    <div>Puntos: <span id="puntosDealer">0</span></div>
+</div>
+
+<button id="btnRepartir">🎲 Repartir</button>
+<button id="btnHit">➕ Pedir carta</button>
+<button id="btnStand">✋ Me planto</button>
+
+<div id="mensaje"></div>
 </body>
 </html>
