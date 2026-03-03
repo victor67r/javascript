@@ -99,3 +99,14 @@ console.log(genContrasena(12));
 
 //INTERACCION CON HTML 
 //1
+let textoEnlace = prompt("Introduce el texto: ");
+let direccionWeb = prompt("Introduce una web: ");
+let enlace = document.createElement("a")
+
+enlace.textContent = textoEnlace;
+enlace.href = direccionWeb;
+enlace.target = "_blank";
+
+document.body.appendChild(enlace);
+
+//2
