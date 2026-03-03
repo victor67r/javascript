@@ -110,3 +110,24 @@ enlace.target = "_blank";
 document.body.appendChild(enlace);
 
 //2
+const urlImagen = prompt("Introduce la URL de la imagen:");
+const urlDestino = prompt("Introduce la dirección web a la que debe dirigir (ej: https://google.com):");
+
+
+const contenedor = document.createElement("p"); 
+const enlace1 = document.createElement("a");    
+const imagen = document.createElement("img"); 
+
+imagen.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg/330px-The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg";
+imagen.style.maxWidth = "100%"; 
+
+enlace1.href = urlDestino;
+enlace1.target = "_blank"; 
+
+contenedor.style.textAlign = "center";
+
+enlace1.appendChild(imagen);    
+contenedor.appendChild(enlace1);  
+document.body.appendChild(contenedor);
+
+//3
