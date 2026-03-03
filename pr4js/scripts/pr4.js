@@ -131,3 +131,16 @@ contenedor.appendChild(enlace1);
 document.body.appendChild(contenedor);
 
 //3
+let datos = ["agua", "zumo", "pepsi", "cocacola", "sprite", "german"];
+const desplegable = document.createElement("select");
+
+for (let bebida of datos) {
+    const opcion = document.createElement("option");
+
+    opcion.textContent = bebida;
+    opcion.value = bebida; 
+
+    desplegable.appendChild(opcion);
+}
+
+document.body.appendChild(desplegable);
