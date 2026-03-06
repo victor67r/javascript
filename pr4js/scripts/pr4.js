@@ -144,3 +144,23 @@ for (let bebida of datos) {
 }
 
 document.body.appendChild(desplegable);
+
+//HARDMODE 
+//1
+//2
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const diceImg = document.getElementById('dice-display');
+    const btnRoll = document.getElementById('roll-button');
+    const mensaje = document.getElementById('mensaje');
+
+    btnRoll.addEventListener('click', () => {
+        const randomNumber = Math.floor(Math.random() * 6) + 1;
+        const nuevaRuta = `dados/dice${randomNumber}.png`;
+
+        diceImg.src = nuevaRuta;
+        
+        console.log("Cargando imagen:", diceImg.src);
+        mensaje.textContent = `¡Ha salido un ${randomNumber}!`;
+    });
+});
