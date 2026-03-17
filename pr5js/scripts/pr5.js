@@ -27,8 +27,11 @@ function saludar () {
     
 };
 
-let subnormal =saludar()
-console.log(subnormal)
+let subnormal1 =saludar()
+console.log(subnormal1)
+console.log("prueba1")
+
+
 
 //Muestra a través de iteraciones tanto las claves de tu objeto como las propiedades de las mismas.
 for (let clave in ticher) {
@@ -55,7 +58,6 @@ let alumno2 = {
         ciudad: "New York"
     }
 };
-
 //HARD MODE
 //Crea un Array con 3 objetos.
 
@@ -91,18 +93,35 @@ alumnos.forEach((alumno, index) => {
 //Ahora haz lo mismo pero usando document.write para crear una tabla con los datos, si no te ves preparado hazlo en una lista desordenada.
 // Crear tabla
 // Crear la tabla en una variable, con ayuda de la chati
-let tablaHTML = "<table border='1'>";
-tablaHTML += "<tr><th>Nombre</th><th>Edad</th><th>Ciudad</th></tr>";
+// let tablaHTML = "<table border='1'>";
+// tablaHTML += "<tr><th>Nombre</th><th>Edad</th><th>Ciudad</th></tr>";
 
-alumnos.forEach(alumno => {
-    tablaHTML += "<tr>";
-    tablaHTML += "<td>" + alumno.nombre + "</td>";
-    tablaHTML += "<td>" + alumno.edad + "</td>";
-    tablaHTML += "<td>" + alumno.ciudad + "</td>";
-    tablaHTML += "</tr>";
-});
+// alumnos.forEach(alumno => {
+//     tablaHTML += "<tr>";
+//     tablaHTML += "<td>" + alumno.nombre + "</td>";
+//     tablaHTML += "<td>" + alumno.edad + "</td>";
+//     tablaHTML += "<td>" + alumno.ciudad + "</td>";
+//     tablaHTML += "</tr>";
+// });
 
-tablaHTML += "</table>";
-document.body.innerHTML = tablaHTML;
+// tablaHTML += "</table>";
+// document.body.innerHTML = tablaHTML;
 
 //Crea un objeto el cual tenga una función y propiedades anidadas. Ahora usa esta propiedad anidada como variable de entrada para dicha función.
+
+//para que funcione, quita la tabla, calvo
+let alumno3 = {
+    nombre: "Marcelino",
+    edad: 23,
+    datos_interes: {   
+        nacionalidad: "Judio",
+        circuncidado: false,
+        ciudad: "New York"
+    }
+};
+
+function saludar2(alumno, ciudad) {
+    return `Hola, soy ${alumno.nombre}, tengo ${alumno.edad} años y vivo en ${ciudad}`;
+}
+
+console.log(saludar2(alumno3, alumno3.datos_interes.ciudad));
