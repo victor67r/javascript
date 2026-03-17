@@ -90,3 +90,19 @@ alumnos.forEach((alumno, index) => {
 
 //Ahora haz lo mismo pero usando document.write para crear una tabla con los datos, si no te ves preparado hazlo en una lista desordenada.
 // Crear tabla
+// Crear la tabla en una variable, con ayuda de la chati
+let tablaHTML = "<table border='1'>";
+tablaHTML += "<tr><th>Nombre</th><th>Edad</th><th>Ciudad</th></tr>";
+
+alumnos.forEach(alumno => {
+    tablaHTML += "<tr>";
+    tablaHTML += "<td>" + alumno.nombre + "</td>";
+    tablaHTML += "<td>" + alumno.edad + "</td>";
+    tablaHTML += "<td>" + alumno.ciudad + "</td>";
+    tablaHTML += "</tr>";
+});
+
+tablaHTML += "</table>";
+document.body.innerHTML = tablaHTML;
+
+//Crea un objeto el cual tenga una función y propiedades anidadas. Ahora usa esta propiedad anidada como variable de entrada para dicha función.
